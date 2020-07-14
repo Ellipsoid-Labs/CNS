@@ -1,0 +1,5 @@
+Makefile
+CMakeFiles/
+*[cC][mM]ake
+!CMakeLists.txt
+CNS
