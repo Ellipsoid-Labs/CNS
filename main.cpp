@@ -2,6 +2,6 @@
 #include "makeconfig.h"
 
 int main() {
-	std::cout << "CNS, (standing for Central Nervous System,) coming soon to a theatre near you!" << std::endl;
+	std::cout << ">> Scatterbrain (CNS: Central Nervous System interpreter) Version: " << __VERSION_MAJOR << "\nalso, " << __VERSION_MINOR << "\nCopyrighted under the M.I.T. license (\"copyright\" for more info)." << std::endl;
 	return 0;
 }
