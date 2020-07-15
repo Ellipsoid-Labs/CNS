@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include <fstream>
 #include "C_Headers/error.h" // err() and errorTypes
 #include "CPP_Headers/interpreter.hpp"
@@ -10,7 +11,7 @@ void interpreter() {
 	for (;;) {
 		std::cout << ">> ";
 		getline(std::cin, input);
-		//for (; *p; ++p) *p = tolower(*p);
+		std::transform(input.begin(), input.end(), input.begin(), ::tolower);
 		// Following are all interpreter interface-specific routines, ending with the call to the main processing function
 		if (input == "copyright") { // TODO: Make strip function
 			std::ifstream license("../LICENSE");
