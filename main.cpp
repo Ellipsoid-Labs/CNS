@@ -1,7 +1,8 @@
-#include <iostream>
-#include "makeconfig.h"
+#include "interpreter.hpp"
 
-int main() {
-	std::cout << ">> Scatterbrain (CNS: Central Nervous System interpreter) Version: " << __VERSION_MAJOR << "\nalso, " << __VERSION_MINOR << "\nCopyrighted under the M.I.T. license (\"copyright\" for more info)." << std::endl;
+int main(int argc, char** argv) {
+	if (argc < 2) {
+		interpreter();
+	}
 	return 0;
 }

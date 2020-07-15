@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "error.h" // err() and errorTypes
+#include "interpreter.hpp"
 
 void interpreter() {
 	std::string input;
