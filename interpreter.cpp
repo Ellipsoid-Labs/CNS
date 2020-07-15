@@ -20,8 +20,3 @@ void interpreter() {
 	}
 	return;
 }
-
-int main() {
-	interpreter();
-	return 0;
-}
