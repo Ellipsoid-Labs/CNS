@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "error.h" // err() and errorTypes
-#include "interpreter.hpp"
+#include "C_Headers/error.h" // err() and errorTypes
+#include "CPP_Headers/interpreter.hpp"
 
 void interpreter() {
 	std::string input;
