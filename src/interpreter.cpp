@@ -13,7 +13,7 @@ void interpreter() {
 		//for (; *p; ++p) *p = tolower(*p);
 		// Following are all interpreter interface-specific routines, ending with the call to the main processing function
 		if (input == "copyright") { // TODO: Make strip function
-			std::ifstream license("LICENSE");
+			std::ifstream license("../LICENSE");
 			std::string line;
 			if (license.is_open()) while (getline(license, line)) std::cout << line << std::endl;
 			else err(Interpreter, "Could not open \"LICENSE\" ...where did our license go?");
