@@ -5,6 +5,7 @@ extern "C" {
 #endif
 
 char *charPos(const char *string, const char *substring);
+char *lower(char *string);
 
 #ifdef __cplusplus
 }

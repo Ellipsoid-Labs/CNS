@@ -5,15 +5,17 @@
 #include "C_Headers/error.h" // err() and errorTypes
 #include "C_Headers/commands.h" // help()
 #include "C_Headers/constants.h" // VERSION
+#include "C_Headers/stringops.h" // lower()
+#include "C_Headers/read.h" // read()
 #include "CPP_Headers/interpreter.hpp"
 
 void interpreter() {
-	std::string input;
+	std::string initInput;
 	std::cout << ">> Scatterbrain CNS: Central Nervous System interpreter " << VERSION << "\nCopyrighted under the M.I.T. license (\"copyright\" for more info).\nUse \"help\" to get started.\n";
 	for (;;) {
 		std::cout << ">> ";
-		getline(std::cin, input);
-		std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+		getline(std::cin, initInput);
+		char* input = lower(initInput.c_str());
 		// Following are all interpreter interface-specific routines, ending with the call to the main processing function
 		if (input == "copyright") { // TODO: Make strip function
 			std::ifstream license("../LICENSE");
@@ -23,6 +25,7 @@ void interpreter() {
 			continue;
 		}
 		if (input == "help") help(1);
+		read(initInput);
 	}
 	return;
 }
