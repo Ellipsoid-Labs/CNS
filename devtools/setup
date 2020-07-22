@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ ${PWD##*/} != "devtools" ]; then
+	echo 'ERROR; please run from "devtools" directory.'
+	exit
+fi
+if [ -d "..//build" ]; then rm -rf ..//build; fi
+cp ..//src -r ..//build
+cd ..//build
+cmake ./
+cmake --build .

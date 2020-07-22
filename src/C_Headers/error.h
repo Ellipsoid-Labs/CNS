@@ -1,12 +1,14 @@
-#include <stdio.h>
-#pragma once
+#ifndef __ERROR_H
+#define __ERROR_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-enum errorTypes {Generic, Interpreter, Warning};
+enum errorTypes {Generic, Interpreter, Warning, Fatal};
+void checkErr();
+void err(short cWarn, const char *message);
 
-void err(short int cWarn, const char *message) {
-	if (!cWarn) printf("\033[1;31mERROR: \033[0m");
-	else if (cWarn == 1) printf("\033[0;31mINTERPRETER ERROR: \033[0m");
-	else printf("[01;33mWARNING: \033[0m");
-	printf("%s\n", message);
-	return;
+#ifdef __cplusplus
 }
+#endif
+#endif

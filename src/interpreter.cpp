@@ -1,13 +1,15 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
+#include <iostream> // std::cout, std::cin, and std::endl
+#include <string> // std::string and getline()
+#include <algorithm> // std::transform()
+#include <fstream> // std::ifstream and is_open()
 #include "C_Headers/error.h" // err() and errorTypes
+#include "C_Headers/commands.h" // help()
+#include "C_Headers/constants.h" // VERSION
 #include "CPP_Headers/interpreter.hpp"
 
 void interpreter() {
 	std::string input;
-	std::cout << ">> Scatterbrain CNS: Central Nervous System interpreter V0.0.1 ALPHA\nCopyrighted under the M.I.T. license (\"copyright\" for more info).\n";
+	std::cout << ">> Scatterbrain CNS: Central Nervous System interpreter " << VERSION << "\nCopyrighted under the M.I.T. license (\"copyright\" for more info).\nUse \"help\" to get started.\n";
 	for (;;) {
 		std::cout << ">> ";
 		getline(std::cin, input);
@@ -18,7 +20,9 @@ void interpreter() {
 			std::string line;
 			if (license.is_open()) while (getline(license, line)) std::cout << line << std::endl;
 			else err(Interpreter, "Could not open \"LICENSE\" ...where did our license go?");
+			continue;
 		}
+		if (input == "help") help(1);
 	}
 	return;
 }
