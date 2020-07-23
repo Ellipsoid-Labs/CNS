@@ -15,16 +15,16 @@ void interpreter() {
 	for (;;) {
 		std::cout << ">> ";
 		getline(std::cin, initInput);
-		char* input = lower(initInput.c_str()); // input is lowercase version
+		char* input = strip(lower(initInput.c_str())); // input is lowercase version
 		// Following are all interpreter interface-specific routines, ending with the call to the main processing function
-		if (input == "copyright") { // TODO: Make strip function
+		if (std::strncmp(input, "copyright", 9) == 0) { // TODO: Make strip function
 			std::ifstream license("../LICENSE");
 			std::string line;
 			if (license.is_open()) while (getline(license, line)) std::cout << line << std::endl;
 			else err(Interpreter, "Could not open \"LICENSE\" ...where did our license go?");
 			continue;
 		}
-		if (input == "help") help(1);
+		if (std::strncmp(input, "help", 4) == 0) help(1);
 		readLn(initInput.c_str());
 	}
 	return;
