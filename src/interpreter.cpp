@@ -17,7 +17,7 @@ void interpreter() {
 		getline(std::cin, initInput);
 		char* input = strip(lower(initInput.c_str())); // input is lowercase version
 		// Following are all interpreter interface-specific routines, ending with the call to the main processing function
-		if (std::strncmp(input, "copyright", 9) == 0) { // TODO: Make strip function
+		if (std::strncmp(input, "copyright", 9) == 0) {
 			std::ifstream license("../LICENSE");
 			std::string line;
 			if (license.is_open()) while (getline(license, line)) std::cout << line << std::endl;
