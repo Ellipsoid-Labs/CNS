@@ -4,7 +4,8 @@
 extern "C" {
 #endif
 
-void read(const char *input);
+void readInit(const char *file);
+void readLn(const char *line);
 
 #ifdef __cplusplus
 }

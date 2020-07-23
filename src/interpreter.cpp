@@ -15,7 +15,7 @@ void interpreter() {
 	for (;;) {
 		std::cout << ">> ";
 		getline(std::cin, initInput);
-		char* input = lower(initInput.c_str());
+		char* input = lower(initInput.c_str()); // input is lowercase version
 		// Following are all interpreter interface-specific routines, ending with the call to the main processing function
 		if (input == "copyright") { // TODO: Make strip function
 			std::ifstream license("../LICENSE");
@@ -25,7 +25,7 @@ void interpreter() {
 			continue;
 		}
 		if (input == "help") help(1);
-		read(initInput);
+		readLn(initInput.c_str());
 	}
 	return;
 }
