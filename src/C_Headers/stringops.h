@@ -5,7 +5,7 @@ extern "C" {
 #endif
 
 char *strip(const char *string);
-char *reduce(const char *string);
+char *reduce(const char *string, int reduceAllWhitespace);
 char *lower(const char *string);
 int frequency(const char *string, char substring);
 int findPos(const char *string, char substring);
