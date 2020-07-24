@@ -90,6 +90,12 @@ char *reduce(const char *string, int reduceAllWhitespace) {
 	return returnString;
 }
 
+char *substr(const char *string, unsigned int startPos, unsigned int endPos) {
+	char *returnString = (char*)malloc((endPos-startPos)*sizeof(char));
+	memcpy(returnString, &string[startPos], endPos-startPos);
+	return returnString;
+}
+
 char **tokenize(const char *string) {
 	// Init
 	char **tokens = (char**)malloc(1024*sizeof(char*));
