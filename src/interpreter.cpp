@@ -1,14 +1,14 @@
 #include <iostream> // std::cout, std::cin, and std::endl
 #include <string> // std::string and getline()
-#include <algorithm> // std::transform()
 #include <cstring> // std::strncmp()
 #include <fstream> // std::ifstream and is_open()
 #include "C_Headers/error.h" // err() and errorTypes
 #include "C_Headers/commands.h" // help()
-#include "C_Headers/constants.h" // VERSION
-#include "C_Headers/stringops.h" // lower()
+#include "C_Headers/global.h" // VERSION
+#include "C_Headers/stringops.h" // lower() and strip()
 #include "C_Headers/read.h" // read()
 #include "CPP_Headers/interpreter.hpp"
+#define __INTERPRETER_ACTIVE
 
 void interpreter() {
 	std::string initInput;
