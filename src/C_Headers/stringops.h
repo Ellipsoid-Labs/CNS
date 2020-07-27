@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-char *substr(const char *string, unsigned int startPos, unsigned int endPos);
+char *subStr(const char *string, unsigned int startPos, unsigned int endPos);
 char *strreverse(const char *string);
 char *strip(const char *string);
 char *reduce(const char *string, int reduceAllWhitespace);
