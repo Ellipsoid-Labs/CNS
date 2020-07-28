@@ -91,7 +91,7 @@ char *reduce(const char *string, int reduceAllWhitespace) {
 	__RETURN_RS;
 }
 
-char *substr(const char *string, unsigned int startPos, unsigned int endPos) {
+char *subStr(const char *string, unsigned int startPos, unsigned int endPos) {
 	char *returnString = (char*)malloc((endPos-startPos)*sizeof(char));
 	memcpy(returnString, &string[startPos], endPos-startPos);
 	__RETURN_RS;
