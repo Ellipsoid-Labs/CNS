@@ -11,6 +11,7 @@ char *reduce(const char *string, int reduceAllWhitespace);
 char *lower(const char *string);
 int frequency(const char *string, char substring);
 int findPos(const char *string, char substring);
+char *concat(const char *prefix, const char *suffix);
 char **tokenize(const char *string);
 
 #ifdef __cplusplus

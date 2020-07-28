@@ -1,8 +1,9 @@
-#include <string.h> // strlen()
+#include <string.h> // strlen(), strcpy(), and strcat()
 #include <stdlib.h> // malloc()
 #include <ctype.h> // isspace()
 #include <stdbool.h> // true and false
 #include "C_Headers/error.h" // err() and errorTypes
+#include "C_Headers/global.h" // __MAX_SECTION_LENGTH 
 #include "C_Headers/stringops.h"
 #define __INIT_RETURN_STRING char *returnString = (char *)malloc(strlen(string)*sizeof(char))
 #define __RETURN_RS return returnString
@@ -31,7 +32,7 @@ int findPos(const char *string, char substring) {
 }	
 
 char *strip(const char *string) {
-	unsigned short whitespaceCharCountBefore = 0;
+	unsigned short whitespaceCharCountBefore = 0;	
 	unsigned short whitespaceCharCountAfter = 0;
 	unsigned short strip__stringLength = strlen(string);
 	unsigned short newLen;
@@ -44,7 +45,7 @@ char *strip(const char *string) {
 	char *returnString = (char*)malloc((newLen+1)*sizeof(char));
 	memcpy( returnString, &string[whitespaceCharCountBefore], newLen);
 	returnString[newLen] = '\0';
-	return returnString;
+	__RETURN_RS;
 }
 
 
@@ -87,26 +88,35 @@ char *reduce(const char *string, int reduceAllWhitespace) {
 	memcpy(returnString, intermediaryString, newLen);
 	returnString[newLen] = '\0';
 	
-	return returnString;
+	__RETURN_RS;
 }
 
 char *substr(const char *string, unsigned int startPos, unsigned int endPos) {
 	char *returnString = (char*)malloc((endPos-startPos)*sizeof(char));
 	memcpy(returnString, &string[startPos], endPos-startPos);
-	return returnString;
+	__RETURN_RS;
+}
+
+char *concat(const char *prefix, const char *suffix) {
+	char *concattedStr = (char*)malloc(strlen(prefix) + strlen(suffix));
+	strcpy(concattedStr, prefix);
+	strcat(concattedStr, suffix);
+	return concattedStr;
 }
 
 char **tokenize(const char *string) {
 	// Init
-	char **tokens = (char**)malloc(1024*sizeof(char*));
+	char **tokens = (char**)malloc(__MAX_SECTION_LENGTH*sizeof(char*));
 	int t = 0; // token count
 	// Parantheses handling TODO: Ensure that function handling takes place before this
-	if (frequency(string, '(') < frequency(string, ')')) 
 	for (int i = 0; i < frequency(string, '('); i++) {
-		tokens[t++] = strlen(string) - 1 - findPos(strreverse(string), ')'); 
+		if (findPos(string, ')') == -1) err(Generic, concat(string, "\nGiven opening paranthesis does not have a matching closing paranthesis."));
+		tokens[t++] = substr(string, findPos(string, '(') + 1, strlen(string) - 1 - findPos(strreverse(string), ')')); 
 		// ^ t increments because it needs to subtract from itself for array formatting but also needs to add to itself; instead, use current value and then add afterwards with t++. The line loops through all pairs of parantheses and tokenizes the value
-		if (findPos(tokens[t - 1]) != -1) tokens[t++] = tokenize(tokens[t - 1]);
+		if (findPos(tokens[t - 1], ')') != -1) {
+			char **tempTokenize = tokenize(tokens[t - 1]);
+			for (int j = 0; j < sizeof(tempTokenize) / sizeof(char*); j++) tokens[t++] = tempTokenize[j];
+		}
 	}
-	for (int i = 0; i < sizeof(tokens) / sizeof(char*); i++) 
 	return tokens;
 }
