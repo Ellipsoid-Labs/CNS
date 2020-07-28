@@ -1,0 +1,3 @@
+[submodule "CNS_gui"]
+	path = CNS_gui
+	url = https://github.com/scatterbrain-lang/CNS_gui
