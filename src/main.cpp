@@ -3,7 +3,7 @@
 #include <boost/lexical_cast.hpp> // boost::lexical_cast and boost::bad_lexical_cast
 #include <fstream> // ifstream, is_open()
 #include <cstdlib> // malloc()
-#include "C_Headers/constants.h" // VERSION
+#include "C_Headers/global.h" // VERSION
 #include "C_Headers/commands.h" // help()
 #include "C_Headers/error.h" // err() and errorTypes
 #include "C_Headers/read.h" // read()
