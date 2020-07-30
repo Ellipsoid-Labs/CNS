@@ -111,7 +111,7 @@ char **tokenize(const char *string) {
 	// Parantheses handling TODO: Ensure that function handling takes place before this
 	for (int i = 0; i < frequency(string, '('); i++) {
 		if (findPos(string, ')') == -1) err(Generic, concat(string, "\nGiven opening paranthesis does not have a matching closing paranthesis."));
-		tokens[t++] = substr(string, findPos(string, '(') + 1, strlen(string) - 1 - findPos(strreverse(string), ')')); 
+		tokens[t++] = subStr(string, findPos(string, '(') + 1, strlen(string) - 1 - findPos(strreverse(string), ')')); 
 		// ^ t increments because it needs to subtract from itself for array formatting but also needs to add to itself; instead, use current value and then add afterwards with t++. The line loops through all pairs of parantheses and tokenizes the value
 		if (findPos(tokens[t - 1], ')') != -1) {
 			char **tempTokenize = tokenize(tokens[t - 1]);
