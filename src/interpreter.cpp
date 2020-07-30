@@ -3,7 +3,7 @@
 #include <cstring> // std::strncmp()
 #include <fstream> // std::ifstream and is_open()
 #include "C_Headers/error.h" // err() and errorTypes
-#include "C_Headers/commands.h" // help()
+#include "C_Headers/commands.h" // help() and CLEAR
 #include "C_Headers/global.h" // VERSION
 #include "C_Headers/stringops.h" // lower() and strip()
 #include "C_Headers/read.h" // read()
@@ -23,10 +23,10 @@ void interpreter() {
 			std::string line;
 			if (license.is_open()) while (getline(license, line)) std::cout << line << std::endl;
 			else err(Interpreter, "Could not open \"LICENSE\" ...where did our license go?");
-			continue;
 		}
-		if (!std::strncmp(input, "help", 4)) help(1);
-		readLn(initInput.c_str());
+		else if (!std::strncmp(input, "help", 4)) help(1);
+		else if (!std::strncmp(input, "clear", 5)) CLEAR;
+		else readLn(initInput.c_str());
 	}
 	return;
 }
