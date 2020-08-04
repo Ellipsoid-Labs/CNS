@@ -1,12 +1,10 @@
 #include <iostream> // std::cout and std::endl
 #include <string> // std::string, find(), std::string::npos, and getline()
-#include <boost/lexical_cast.hpp> // boost::lexical_cast and boost::bad_lexical_cast
-#include <fstream> // ifstream, is_open()
-#include <cstdlib> // malloc()
+#include <fstream> // ifstream and is_open()
 #include "C_Headers/global.h" // VERSION
 #include "C_Headers/commands.h" // help()
 #include "C_Headers/error.h" // err() and errorTypes
-#include "C_Headers/read.h" // read()
+#include "C_Headers/read.h" // readInit()
 #include "CPP_Headers/interpreter.hpp" // interpreter()
 
 std::string commentFormat(std::string line, std::string substring) { 
@@ -22,10 +20,7 @@ int main(int argc, char** argv) {
 	std::string argv1 = argv[1];
 	if (argv1 == "--version") std::cout << VERSION << std::endl;
 	else if (argv1 == "--help" || argv1 == "--man") {
-		if (argc != 2) {
-			try { help(boost::lexical_cast<int>(argv[2])); }
-			catch (boost::bad_lexical_cast) { help(-1); }
-		}
+		if (argc != 2) safetyHelp(argv[2]);
 		else help(1);
 	}
 	else { 
@@ -53,7 +48,7 @@ int main(int argc, char** argv) {
 			}
 			file += line + "\n";
 		}
-		readLn(line.c_str());
+		readInit(file.c_str());
 	}
 	return 0;
 }
